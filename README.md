@@ -1,6 +1,9 @@
 # json2csharp
 Generate C# classes from a json.
-
+## Installation
+```
+npm install json2csharp
+```
 ## Usage
 ```js
 import json2csharp from "json2csharp";
