@@ -30,7 +30,7 @@ const handleObject = (classes, obj, key, skip) => {
   }
 
   Object.keys(obj).forEach((k) => {
-    const keyName = isNaN(k) ? k : `${key}_Item`;
+    const keyName = isNaN(k) ? k : `${key}Item`;
     let prop;
     if (typeof obj[k] == "object") {
       if (Array.isArray(obj[k])) {
@@ -64,7 +64,7 @@ const json2csharp = (src, annotations) => {
   handleObject(classes, JSON.parse(src), "root");
   let result = "";
   result += "using System;\n";
-  result += annotations ? "using Newtonsoft.Json;\n\n" : "";
+  result += annotations ? "using Newtonsoft.Json;\n\n" : "\n";
   classes.forEach((c) => {
     result += `public class ${normalize(c.key)}\n`;
     result += "{";
