@@ -37,7 +37,7 @@ public class Root
     public string[] Keywords { get; set; }      
 }
 
-public class Packages_Item
+public class PackagesItem
 {
     public string Name { get; set; }
     public DateTime Release { get; set; }
@@ -67,7 +67,7 @@ public class Root
     public string[] Keywords { get; set; }
 }
 
-public class Packages_Item
+public class PackagesItem
 {
     [JsonProperty("name")]
     public string Name { get; set; }
