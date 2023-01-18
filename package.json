@@ -1,6 +1,6 @@
 {
   "name": "json2csharp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "description": "Generate C# classes from a json",
   "main": "./src/json2csharp.js",
