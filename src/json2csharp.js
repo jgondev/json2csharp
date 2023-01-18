@@ -59,9 +59,14 @@ const handleObject = (classes, obj, key, skip) => {
   });
 };
 
-const json2csharp = (src, annotations) => {
+export const json2classes = (src) => {
   const classes = [];
   handleObject(classes, JSON.parse(src), "root");
+  return classes;
+};
+
+const json2csharp = (src, annotations) => {
+  const classes = json2classes(src);
   let result = "";
   result += "using System;\n";
   result += annotations ? "using Newtonsoft.Json;\n\n" : "\n";

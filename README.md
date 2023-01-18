@@ -8,7 +8,7 @@ npm install json2csharp
 ```js
 import json2csharp from "json2csharp";
 
-const jsonSrc = `{ 
+const src = `{ 
     "name": "jgondev",
     "age": 32,
     "packages": [
@@ -23,7 +23,7 @@ const jsonSrc = `{
     ]
  }`;
 
-const result = json2csharp(jsonSrc);
+const result = json2csharp(src);
 ```
 
 ## Result
@@ -45,9 +45,8 @@ public class PackagesItem
 ```
 ---
 ## Newtonsoft Annotations
-json2csharp method accepts a second parameter to provide [**Newtonsoft** annotations](https://www.newtonsoft.com/jsonschema/help/html/GenerateWithJsonNetAttributes.htm) 
-<br><br>
-`const result = json2csharp(jsonSrc, true);`
+**json2csharp** method accepts a second parameter to provide [Newtonsoft annotations](https://www.newtonsoft.com/jsonschema/help/html/GenerateWithJsonNetAttributes.htm)<br><br>
+`const result = json2csharp(src, true);`
 ```c#
 using System;
 using Newtonsoft.Json;
@@ -75,4 +74,55 @@ public class PackagesItem
     [JsonProperty("release")]
     public DateTime Release { get; set; }
 }
+```
+---
+## Classes model
+**json2csharp** is internally calling another method to model the json classes that is then used to generate the classes file.<br><br>This method is called `json2classes` and you can import and use it like this:
+
+```js
+import { json2classes } from "json2csharp";
+
+const jsonSrc = [...]
+
+const result = json2classes(jsonSrc);
+```
+
+#### Result
+```json
+[
+   {
+      "key":"root",
+      "props":[
+         {
+            "type":"string",
+            "name":"name"
+         },
+         {
+            "type":"int",
+            "name":"age"
+         },
+         {
+            "type":"PackagesItem[]",
+            "name":"packages"
+         },
+         {
+            "type":"string[]",
+            "name":"keywords"
+         }
+      ]
+   },
+   {
+      "key":"packagesItem",
+      "props":[
+         {
+            "type":"string",
+            "name":"name"
+         },
+         {
+            "type":"DateTime",
+            "name":"release"
+         }
+      ]
+   }
+]
 ```
